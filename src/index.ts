@@ -21,5 +21,5 @@ const transactionsRouter = require('./routes/transactions/transactions');
 app.use('/transactions', transactionsRouter);
 
 app.listen(port, () => {
-    console.log(`RuWSnning on port ${port}`);
+    console.log(`Running on port ${port}`);
 });

@@ -46,7 +46,7 @@ router.patch('/:id', getTransaction, async(req: Request, res: TransactionInterfa
         res.transaction.name = req.body.name
     }
     if(req.body.amount){
-        res.transaction.amount = req.body.amount
+        res.transaction.amount = req.body.amount * 100
     }
     if(req.body.type){
         res.transaction.type = req.body.type

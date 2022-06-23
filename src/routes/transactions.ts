@@ -1,7 +1,7 @@
 import express, {Request, Response, Express, NextFunction} from 'express'
 const router = express.Router();
 
-const Transactions = require('../../../database/models/transactions');
+const Transactions = require('../../database/models/transactions');
 
 interface TransactionInterface extends Response {
     transaction?: {

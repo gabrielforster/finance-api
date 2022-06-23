@@ -17,7 +17,7 @@ const port = process.env.PORT || 8181;
 app.use(express.json())
 app.use(cors());
 
-const transactionsRouter = require('./routes/transactions/transactions');
+const transactionsRouter = require('./routes/transactions');
 app.use('/transactions', transactionsRouter);
 
 app.listen(port, () => {

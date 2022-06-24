@@ -11,11 +11,17 @@ const transactionsSchema = new mongoose.Schema({
     },
     type: {
         type: String,
+        required: true,
         values: ['withdraw', 'deposit'],
         default: 'withdraw',
     },
+    category: {
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: String,
+        required: true,
         default: new Date().toISOString(),
     }
 })

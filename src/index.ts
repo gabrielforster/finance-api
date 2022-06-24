@@ -20,6 +20,10 @@ app.use(cors());
 const transactionsRouter = require('./routes/transactions');
 app.use('/transactions', transactionsRouter);
 
+const categoriesRouter = require('./routes/categories');
+// import categoriesRouter from './routes/categories';
+app.use('/categories', categoriesRouter);
+
 app.listen(port, () => {
     console.log(`Running on port ${port}`);
 });

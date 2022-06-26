@@ -12,7 +12,7 @@ db.on('error',(error) => console.error({'error on connection': error.message}));
 db.once('open',() => console.log('DB OK!'));
 
 const app: Express = express();
-const port = process.env.PORT || 8181;
+const port = process.env.PORT || 8080;
 
 app.use(express.json())
 app.use(cors());
@@ -21,8 +21,10 @@ const transactionsRouter = require('./routes/transactions');
 app.use('/transactions', transactionsRouter);
 
 const categoriesRouter = require('./routes/categories');
-// import categoriesRouter from './routes/categories';
 app.use('/categories', categoriesRouter);
+
+const loginRouter = require('./routes/login');
+app.use('/login', loginRouter);
 
 app.listen(port, () => {
     console.log(`Running on port ${port}`);

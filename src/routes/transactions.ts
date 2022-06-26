@@ -15,8 +15,9 @@ interface TransactionInterface extends Response {
 
 //Get all
 router.get('/', async(req: Request, res: Response) => {
+    const userCredentials = req.query.userCredentials;
     try{
-        const transactions = await Transactions.find();
+        const transactions = await Transactions.find({user: userCredentials});
         res.status(200).json(transactions);
     } catch(err){
         res.status(500).json({message: err.message});
@@ -32,6 +33,7 @@ router.post('/', async(req: Request, res: Response) => {
         name: req.body.name,
         amount: req.body.amount * 100,
         type: req.body.type,
+        user: req.body.user,
         createdAt: new Date().toISOString()
     })
     try{
@@ -73,7 +75,7 @@ router.delete('/:id', getTransaction, async(req: Request, res: TransactionInterf
 async function getTransaction(req: Request,res: TransactionInterface, next: NextFunction){
     let transaction;
     try{
-        transaction = await Transactions.findById(req.params.id);
+        transaction = await Transactions.find(req.params.id);
         if(!transaction){
             return res.status(400).json({message: 'Transaction not found'});
         }

@@ -16,6 +16,7 @@ router.get('/', async(req: Request,res: Response)=> {
                 user: {
                     username: user.username,
                     email: user.email,  
+                    isAdmin: user.isAdmin,
                 }
             });
         }

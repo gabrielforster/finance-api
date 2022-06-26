@@ -17,13 +17,11 @@ router.get("/", async (req: Request, res: Response) => {
     const user = await User.findOne({ username: username });
     if (password === user.password) {
       res.status(200).json({
-        message: "Login successful",
         hasAccess: true,
-        user: {
-          username: user.username,
-          email: user.email,
-          isAdmin: user.isAdmin,
-        },
+        username: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        userCredentials: user.userCredentials,
       });
     } else if (password !== user.password) {
       res.status(401).json({

@@ -75,7 +75,7 @@ router.delete('/:id', getTransaction, async(req: Request, res: TransactionInterf
 async function getTransaction(req: Request,res: TransactionInterface, next: NextFunction){
     let transaction;
     try{
-        transaction = await Transactions.find(req.params.id);
+        transaction = await Transactions.findById(req.params.id);
         if(!transaction){
             return res.status(400).json({message: 'Transaction not found'});
         }

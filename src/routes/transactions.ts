@@ -8,6 +8,7 @@ interface TransactionInterface extends Response {
         name: string,
         amount: number,
         type: string,
+        user: string
         createdAt: string
     } | any
 }

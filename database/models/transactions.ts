@@ -15,6 +15,10 @@ const transactionsSchema = new mongoose.Schema({
         values: ['withdraw', 'deposit'],
         default: 'withdraw',
     },
+    user: {
+        type: String,
+        required: true,
+    },
     category: {
         type: String,
         required: false,

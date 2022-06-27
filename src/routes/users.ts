@@ -88,6 +88,7 @@ router.post("/", async (req: Request, res: Response) => {
     password: req.body.user.password,
     isAdmin: req.body.user.sAdmin,
     profilePicture: req.body.user.profilePicture,
+    userCredentials: req.body.user.userCredentials,
   };
   if (!user) {
     res.status(400).send("Bad request");

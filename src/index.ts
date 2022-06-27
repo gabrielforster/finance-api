@@ -26,6 +26,9 @@ app.use('/categories', categoriesRouter);
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
 
+const usersRouter = require('./routes/users');
+app.use('/users', usersRouter);
+
 app.listen(port, () => {
     console.log(`Running on port ${port}`);
 });

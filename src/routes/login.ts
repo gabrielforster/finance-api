@@ -21,7 +21,6 @@ router.get("/", async (req: Request, res: Response) => {
         username: user.username,
         email: user.email,
         isAdmin: user.isAdmin,
-        userCredentials: user.userCredentials,
       });
     } else if (password !== user.password) {
       res.status(401).json({

@@ -15,9 +15,9 @@ interface TransactionInterface extends Response {
 
 //Get all
 router.get('/', async(req: Request, res: Response) => {
-    const userCredentials = req.query.userCredentials;
+    const userId = req.query.userId;
     try{
-        const transactions = await Transactions.find({user: userCredentials});
+        const transactions = await Transactions.find({user: userId});
         res.status(200).json(transactions);
     } catch(err){
         res.status(500).json({message: err.message});

@@ -21,12 +21,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: false,
     },
-    userCredentials: {
-        type: String,
-        required: true,
-        unique: true,
-        minlength: 10,
-    },
     profilePicture: {
         type: String,
         required: false,

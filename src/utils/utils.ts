@@ -1,7 +1,7 @@
 import { User } from "../../database/models/user";
-import  { verifyIsAdminInterface } from "../types/types";
+import  { verifyPermissionInterface } from "../interfaces/verifyPermission";
 
-export const verifyIsAdmin = async(userId: string):Promise<verifyIsAdminInterface> => {
+export const verifyPermission = async(userId: string):Promise<verifyPermissionInterface> => {
   const user = await User.findById(userId);
   if (!user) {
     return {

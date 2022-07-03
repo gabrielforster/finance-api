@@ -3,7 +3,7 @@ const router = express.Router();
 
 import { User } from "../../database/models/user";
 
-import { verifyPermission } from "../utils/utils";
+import { verifyPermission } from "../auth/verifyPermission";
 
 router.use(express.json());
 
@@ -15,13 +15,13 @@ router.get("/", async (req: Request, res: Response) => {
   }
 
   const user = await verifyPermission(userId as string);
-  if (!user.isAdmin) {
+  if (!user) {
     res.status(401).json({
       message: "User is not admin",
     });
   }
 
-  if(user.isAdmin){
+  if(user){
     try {
       const users = await User.find();
       const formatedUsers = users.map((user) => {
@@ -76,7 +76,7 @@ router.post("/", async (req: Request, res: Response) => {
   }
 
   const userRequesting = await verifyPermission(userRequestingId as string);
-  if (!userRequesting.isAdmin) {
+  if (!userRequesting) {
     res.status(401).json({
       message: "User is not admin",
     });
@@ -115,7 +115,7 @@ router.patch("/:id", async (req: Request, res: Response) => {
 
   const userRequestingId = req.body.userRequestingId;
   const userRequesting = await verifyPermission(userRequestingId as string);
-  if (!userRequesting.isAdmin && userId !== userRequestingId) {
+  if (!userRequesting && userId !== userRequestingId) {
     res.status(401).json({
       message: "Conditional request failed",
     });
@@ -159,7 +159,7 @@ router.delete("/:id", async (req: Request, res: Response) => {
 
   const userRequestingId = req.body.userRequestingId;
   const userRequesting = await verifyPermission(userRequestingId as string);
-  if (!userRequesting.isAdmin && userId !== userRequestingId) {
+  if (!userRequesting && userId !== userRequestingId) {
     res.status(401).json({
       message: "Conditional request failed",
     });

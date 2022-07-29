@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Transactions = require('../../database/models/transactions');
 
+import {formatDateIntoString} from '../utils/utils';
 interface TransactionInterface extends Response {
     transaction?: {
         name: string,
@@ -34,32 +35,15 @@ router.post('/', async(req: Request, res: Response) => {
         amount: req.body.amount * 100,
         type: req.body.type,
         user: req.body.user,
-        createdAt: new Date().toISOString()
+        createdAt: req.body.createdAt ?
+            new Date(formatDateIntoString(req.body.createdAt)).toISOString()
+            : new Date().toISOString()
     })
     try{
         const newTransaction = await transaction.save();
         return res.status(201).json(newTransaction);
     }catch (err){
         return res.status(400).json({message: err.message});
-    }
-})
-//Update
-router.patch('/:id', getTransaction, async(req: Request, res: TransactionInterface) => {
-    if(req.body.name){
-        res.transaction.name = req.body.name
-    }
-    if(req.body.amount){
-        res.transaction.amount = req.body.amount * 100
-    }
-    if(req.body.type){
-        res.transaction.type = req.body.type
-    }
-
-    try{
-        const updatedTransaction = await res.transaction.save();
-        res.status(202).json(updatedTransaction);
-    } catch(err){
-        res.status(400).json({message: err.message});
     }
 })
 //Delete

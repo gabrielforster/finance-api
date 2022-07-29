@@ -1,2 +1,6 @@
-// Remove verifyPermission function from here because it is not a 'util' function.
-// it's more like a auth function.
+import {dateObjectInterface} from '../interfaces/utils';
+
+export const formatDateIntoString = (date: dateObjectInterface): string => {
+    const {day, month, year} = date;
+    return `${year}, ${month}, ${day}`;
+}

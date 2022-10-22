@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 const router = express.Router();
 
-import { User } from "../../database/models/user";
+import { User } from "../database/models/user";
 
 import { verifyPermission } from "../auth/verifyPermission";
 

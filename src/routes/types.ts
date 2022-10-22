@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
 const router = express.Router();
 
-import {Types} from '../../database/models/types';
+import {Types} from '../database/models/types';
 import {verifyPermission} from '../auth/verifyPermission';
 
 router.get('/', async(req: Request,res: Response)=> {

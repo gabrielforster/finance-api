@@ -1,7 +1,7 @@
 import express, {Request, Response } from 'express'
 const router = express.Router();
 
-import {Categories} from '../../database/models/categories';
+import {Categories} from '../database/models/categories';
 
 router.use(express.json())
 

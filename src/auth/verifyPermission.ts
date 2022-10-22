@@ -1,6 +1,6 @@
 import  { verifyPermissionInterface } from "../interfaces/verifyPermission";
 
-import { User } from "../../database/models/user";
+import { User } from "../database/models/user";
 
 export const verifyPermission = async(userId: string):Promise<boolean> => {
   const user = await User.findById(userId);

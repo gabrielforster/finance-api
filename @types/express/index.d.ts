@@ -1,10 +1,9 @@
-
-import { RequestWithUser } from "../../src/interfaces/RequestWithUser";
+import { type User } from "../../src/interfaces/User";
 
 declare global{
     namespace Express {
         interface Request {
-            user: RequestWithUser
+            user: User
         }
     }
 }

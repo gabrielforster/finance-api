@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from "express"
 import jwt from "jsonwebtoken"
 
-import { RequestWithUser } from "../../interfaces/RequestWithUser";
+import { User } from "../../interfaces/User";
 
-const config = process.env
+const { TOKEN_KEY } = process.env
 
-const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+const auth = (req: Request, res: Response, next: NextFunction) => {
   const token =
     req.body.token || req.query.token || req.headers["x-access-token"];
 
@@ -13,12 +13,12 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     return res.status(403).send("A token is required for authentication");
   }
   try {
-    const decoded = jwt.verify(token, config.TOKEN_KEY as string);
-    req.user = decoded as RequestWithUser;
+    const decoded = jwt.verify(token, TOKEN_KEY as string);
+    req.user = decoded as User;
   } catch (err) {
     return res.status(401).send("Invalid Token");
   }
   return next();
 };
 
-export default verifyToken;
+export default auth;

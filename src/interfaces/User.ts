@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 import * as z from 'zod';
 
-export const RequestWithUser = z.object({
+export const User = z.object({
     user_id: z.string().min(1),
     email: z.string().email().nullish(),
     username: z.string().min(1).nullish(),
@@ -17,4 +17,4 @@ export const RequestWithUser = z.object({
     message: 'Invalid ObjectId',
   });
 
-export type RequestWithUser = z.infer<typeof RequestWithUser>;
+export type User = z.infer<typeof User>;

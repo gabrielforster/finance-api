@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/src/index.js",
-    "dev": "nodemon index.ts"
+    "dev": "nodemon index.ts",
+    "postinstall": "npm run build && npm run start"
   },
   "author": "gabrielforster",
   "license": "ISC",

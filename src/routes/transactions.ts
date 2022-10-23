@@ -3,7 +3,6 @@ const router = express.Router();
 
 const Transactions = require('../../database/models/transactions');
 
-import {formatDateIntoString} from '../utils/utils';
 interface TransactionInterface extends Response {
     transaction?: {
         name: string,
@@ -35,9 +34,7 @@ router.post('/', async(req: Request, res: Response) => {
         amount: req.body.amount * 100,
         type: req.body.type,
         user: req.body.user,
-        createdAt: req.body.createdAt ?
-            new Date(formatDateIntoString(req.body.createdAt)).toISOString()
-            : new Date().toISOString()
+        createdAt: new Date().toISOString()
     })
     try{
         const newTransaction = await transaction.save();
@@ -71,4 +68,4 @@ async function getTransaction(req: Request,res: TransactionInterface, next: Next
     next();
 }
 
-module.exports = router;
+// module.exports = router;

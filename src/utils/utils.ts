@@ -1,6 +1,5 @@
-import {dateObjectInterface} from '../interfaces/utils';
+import bcrypt from "bcryptjs";
 
-export const formatDateIntoString = (date: dateObjectInterface): string => {
-    const {day, month, year} = date;
-    return `${year}, ${month}, ${day}`;
+export async function comparePasswords(password: string, hash: string): Promise<boolean> {
+  return await bcrypt.compareSync(password, hash);
 }

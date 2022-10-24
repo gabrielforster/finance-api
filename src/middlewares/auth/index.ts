@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken"
 
 import { User } from "../../interfaces/User";
 
-const { TOKEN_KEY } = process.env
-
 const auth = (req: Request, res: Response, next: NextFunction) => {
   const token =
     req.body.token || req.query.token || req.headers["x-access-token"];
@@ -13,9 +11,10 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
     return res.status(403).send("A token is required for authentication");
   }
   try {
-    const decoded = jwt.verify(token, TOKEN_KEY as string);
+    const decoded = jwt.verify(token, process.env.TOKEN_KEY as string);
     req.user = decoded as User;
   } catch (err) {
+    console.error(err)
     return res.status(401).send("Invalid Token");
   }
   return next();

@@ -55,6 +55,7 @@ export async function loginUser(req: Request, res: Response, next: NextFunction)
       );
 
       user.token = token;
+      await user.save();
 
       return res.status(200).json(user);
     }
